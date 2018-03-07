@@ -121,7 +121,7 @@ def gen_date_file(sub_path, target_folder, thedate) :
 	
 def gen_files(sub_path, target_folder) :
 	## 默认导出最近10天的聊天记录
-	range = datetime.timedelta(days=21)
+	range = datetime.timedelta(days=5)
 
 	thedate = datetime.datetime.now().date() - range
 
