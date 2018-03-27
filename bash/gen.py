@@ -23,8 +23,12 @@ def gen_date_file(source_path, sub_path, target_folder, thedate) :
 	source=open(source_path)
 	## 聊天内容总数；
 	line_count = 0; 
-	## 发言频率
-	freq ={}
+	## 发言频率, 连续发言5次以上，就当做嘉宾了。 
+	## 计算发言最多的人，作为嘉宾
+	pres_name = 'PaymentGroup'
+	cur_name = 'PaymentGroup'
+	cur_count = 0 
+	pres_count = 5
 	## 计算聊天内容总数；
 	
 	for line in source:
@@ -55,23 +59,20 @@ def gen_date_file(source_path, sub_path, target_folder, thedate) :
 
 			if date == thedate and msgtype == u'文本':
 				line_count += 1
-				if freq.has_key(name) :
-					freq[name] += 1 
+				if name == cur_name :
+					cur_count += 1 
+					if cur_count > pres_count :
+						pres_name = cur_name
+						pres_count = cur_count
 				else :
-					freq[name] = 1				
+					cur_name = name 
+					cur_count = 0 
 				
 	source.close()
 	
 	if line_count<2 :
 		return
 	
-	## 计算发言最多的人，作为嘉宾
-	pres_name = 'PaymentGroup'
-	pres_count = 0
-	for name in freq:
-		if freq[name]>pres_count :
-			pres_name = name
-			pres_count = freq[name]
 	
 	target_path = r'D:/cocolian/cocolian-docs/source/'+target_folder+'/_posts/'+thedate+'-chat.markdown'
 	target = codecs.open(target_path, 'w', encoding = 'utf-8', errors='ignore')
