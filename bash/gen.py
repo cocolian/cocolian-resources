@@ -166,7 +166,10 @@ def gen_date_file(source_path, sub_path, target_folder, thedate) :
 	
 def gen_files(sub_path, target_folder) :
 	## 默认导出最近10天的聊天记录
-	range = datetime.timedelta(days=100)
+	exp_days = 10 
+	if len(sys.argv)==2 :
+		exp_days = int(sys.argv[1])
+	range = datetime.timedelta(days=exp_days)
 
 ## 寻找最近日期的xls文件
 	## 最新的文件路径
