@@ -25,7 +25,9 @@ sub_path = u'/表格格式/支付产品技术交流群.xls'
 for cur_folder in os.listdir(root_path):
 	if cmp(cur_folder, last_folder)>0 and  os.path.exists(root_path + cur_folder + sub_path):
 		last_folder = cur_folder
-	
+
+#last_folder = u'201803271234-合并'
+		
 unpath = root_path + last_folder + sub_path
 
 print('使用最新文件: '+ unpath +'\n')
@@ -80,4 +82,4 @@ for name in freq:
 target.flush()
 target.close()
 
-print('完成导出：'+ unpath +'\n')
+print('完成导出：D:/stat.csv \n')
