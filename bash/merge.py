@@ -53,7 +53,7 @@ def merge(source_path_1, source_path_2, target_path) :
 			pos_end = line.find('</td>', pos_start)
 			msg = cgi.escape(line[pos_start:pos_end]).decode('gbk', errors='ignore').encode('utf-8')
 
-			lines[datetime + name] = line
+			lines[datetime +wechat_no] = line
 				
 	source1.close()
 	
@@ -83,7 +83,7 @@ def merge(source_path_1, source_path_2, target_path) :
 			pos_end = line.find('</td>', pos_start)
 			msg = cgi.escape(line[pos_start:pos_end]).decode('gbk', errors='ignore').encode('utf-8')
 
-			lines[datetime + name] = line
+			lines[datetime + wechat_no] = line
 				
 	source2.close()
 
@@ -99,8 +99,8 @@ def merge(source_path_1, source_path_2, target_path) :
 	
 	return
 ## 文件相对路径的位置
-## file_name = u'支付产品技术交流群.xls'
-##file_name = u'支付技术架构交流群.xls'
-file_name = u'支付产品架构交流群.xls'
+file_name = u'支付产品技术交流群.xls'
+#file_name = u'支付技术架构交流群.xls'
+# file_name = u'支付产品架构交流群.xls'
 merge(path1+file_name, path2+ file_name, path3+ file_name)
 
