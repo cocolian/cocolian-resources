@@ -37,7 +37,7 @@ for cur_foldername in os.listdir(unpath):
 		if cur_filename.endswith(".png"): 
 			cur_path = os.path.join(cur_folder, cur_filename)
 			target_path = os.path.join(target_folder, cur_filename)
-			if not os.path.exists(target_path):
+			if not os.path.exists(target_path) or os.path.getsize(cur_path)>os.path.getsize(target_path) :
 				shutil.copy(cur_path, target_folder) 
 				print(cur_path +' --> ' + target_path)
 		
